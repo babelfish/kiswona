@@ -5,6 +5,7 @@
 \def\@seccntformat#1{\llap{\csname the#1\endcsname\quad}}
 \makeatother
 
+\usepackage{mdframed}
 \usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage[top=0.75in, bottom=0.75in, left=1in, right=0.75in]{geometry}
@@ -25,6 +26,8 @@
 \usepackage{multirow}
 \usepackage{changepage}
 \usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{changepage}
 \DeclareUTFcharacter[\UTFencname]{x2329}{\textlangle}
 \DeclareUTFcharacter[\UTFencname]{x232A}{\textrangle}
 \DeclareUTFcharacter[\UTFencname]{x0335}{\strokeoverlay}
@@ -47,6 +50,22 @@
 \renewcommand\iota{ɪ}
 \onehalfspace
 
+\newmdenv[
+  
+]{example-box}
+
+\renewenvironment{example}
+{\vspace{\baselineskip}\begin{adjustwidth}{1em}{0pt}\begin{example-box}}
+{\end{example-box}\end{adjustwidth}}
+
+\newenvironment{original}
+{\itshape}
+{\upshape}
+
+\newenvironment{translation}
+{``}
+{''}
+
 \author{Benjamin Smith}
 \title{Kiswóna Grammar}
 \date{July 29, 2013}
@@ -56,12 +75,12 @@
 	\includepdf[pages={1}]{cover.pdf}
 
 	\tableofcontents
-	
+
 	\newpage
-	
+
 	\section{Introduction}
 		Classical Kiswóna \phone{ki.zwo\hightone na} is the lingua franca and literary language of the nations of the Ondási. Inspiration for Kiswóna has been drawn from the Amerindian languages, particularly the Iroquoian and Athabascan languages. The Ondási nations are partially inspired by the Iroquois League.
-	
+
 	\section{Legend}
 		\begin{tabular}{l l l l l l}
 			1 & 1\textsuperscript{st} person & \textsc{exh} & exhortative & \textsc{obv} & obviative \\
@@ -84,33 +103,53 @@
 			\textsc{ela} & elative & \textsc{npst} & near past & & \\
 			\textsc{excl} & exclusive & \textsc{nvl} & non-volitional & & \\
 		\end{tabular}
-	
+
 	\section{Phonology}
-									
+
 		\subsection{Phoneme Inventory}
 			Kisw\'ona features seventeen consonants and either five or ten vowels, depending on how it is analyzed. It is notable for its complete lack of bilabial and rhotic consonants, having lost the bilabial nasal [m], voiced bilabial fricative [β], retroflex approximant [ɻ] and alveolar trill [r] present in the Boreal and Occidental as well as Proto–Kanneyan languages.		
-											
+
 			\subsubsection{Consonants}
-						
+
 				\paragraph{Nasals} ~\\
 					Kisw\'ona has a single nasal consonant, \phoneme{n}.
-							
+
 				\paragraph{Stops} ~\\
 					Five stops are contrasted, \phoneme{t d k g \gstop}. The glottal stop is represented by \orth{q}.
-							
+
 				\paragraph{Fricatives} ~\\
-					Kisw\'ona has five fricatives \phoneme{s \esh{} \c{c} x \tl} represented by \orth{s x hy h tl}. When a fricative occurs intervocally or between a vowel and a voiced consonant, it becomes voiced yielding \phone{z \textipa{Z J G \textlyoghlig}}. Adjacent fricatives undergo regressive assimilation, e.g. \phoneme{\c{c}\esh{}} is realised as \phone{\esh{}\textlong}. These changes are not reflected in the orthography.
-							
+					Kisw\'ona has five fricatives \phoneme{s \esh{} \c{c} x \tl} represented by \orth{s x hy h tl}.
 				\paragraph{Approximants} ~\\
-					There three approximants \phoneme{\textturnw{} w j} represented by \orth{hw w y}.
-			
+					There are three approximants \phoneme{\textturnw{} w j} represented by \orth{hw w y}.
+
 				\paragraph{Affricates} ~\\
 					Kisw\'ona has two affricates \phoneme{\t{ts} \t{t\esh}} represented by \orth{ts c}.
-			
+
 			\subsubsection{Vowels}
-				Kisw\'ona has five base vowels \phoneme{i u e o a} with contrastive length and nasalization. When vowels are nasalized their quality changes. \phoneme{\~{i}} is realized as \phone{\~\i}, \phoneme{\~u} as \phone{\~\omega}, \phoneme{\~e} as \phone{\~\epsilon}, \phoneme{\~o} as \phone{\~\turnc} and \phoneme{\~a} as \phone{\~\ae}. Nasalization is marked with ogonki and length is indicated by doubling of vowels.
+				Kisw\'ona has five base vowels \phoneme{i u e o a} with contrastive length, tone and nasalization. Nasalization is marked with ogonki and length is indicated by doubling of vowels.
+
+    \subsection{Allophony}
+      \subsubsection{Consonants}
+        The alveolar stops \phoneme{t d} exist in free variation with their dental counterparts \phone{\textipa{\textsubbridge{t} \textsubbridge{d}}}. When the alveolar nasal precedes a dental stop it too becomes dental \phone{\textipa{\textsubbridge{n}}}.
+
+        When a fricative occurs intervocally or between a vowel and a voiced consonant, it becomes voiced yielding \phone{z \textipa{Z J G \textlyoghlig}}.
+
+        \begin{example}
+          \begin{original}
+            Test
+          \end{original}
+
+          \begin{translation}
+            Test
+          \end{translation}
+        \end{example}
+
+        Adjacent fricatives undergo regressive assimilation. \phoneme{\c{c}\esh{}} is realised as \phone{\esh{}\textlong}. These changes are not reflected in the orthography.
+
+      \subsubsection{Vowels}
+        When vowels are nasalized their quality changes.
 				\vspace{10pt}
-				
+
 				\begin{tabular}{|l|c|c|c|c|c|}
 					\hline
 					\textbf{Bare}  & a \phone{a} & e \phone{e} & i \phone{i} & o \phone{o} & u \phone{u} \\
@@ -118,7 +157,7 @@
 					\textbf{Nasal} & \k{a} \phone{\~\ae} & \k{e} \phone{\~\epsilon} & \k{i} \phone{\~\iota} & \k{o} \phone{\~\turnc} & \k{u} \phone{\~\omega} \\
 					\hline
 				\end{tabular}
-				
+
 		\subsection{Phonotactics}
 			\subsubsection{Syllable Structure}
 				The basic structure of the Kisw\'ona syllable is (C)(C)V(C). The following constraints exist:
@@ -209,15 +248,15 @@
 			\textsuperscript{8}Sáswax Tséqaso andíyudéta cúgwin axyaxítula le.
 			\textsuperscript{9}Sáswax lááye kiséwasitl téluhye Tséqako kádata tsáagi, dádeletl ontlohéqa ehyóó. Sáswax lááka Tséqaso andíyudéta.
 			\\~
-			
+
 			\gl{téluhye-x Tséqa-ko kiséwa-tl aníhwe anká-t-e}{entirety-\textsc{a} Ts\'eqa-\textsc{gen} tongue-\textsc{obl} one use-\textsc{fpst}-\textsc{ipfv}}
-			
+
 			\vspace{12pt}
 			\gl{khwotsá-ka a-x-wegénle-t-e \'atle}{east-\textsc{abl} 3.\textsc{pl}-\textsc{a}-travel-\textsc{fpst}-\textsc{ipfv} while}
-			
+
 			\vspace{12pt}
 			\gl{itle-n xína-y\`a a-x-iy\'ane-t-a}{plain-\textsc{obl} Shinar-\textsc{ine} 3.\textsc{pl}-\textsc{a}-stumble.upon-\textsc{fpst}-\textsc{ipfv}}
-			
+
 			\vspace{12pt}
 			\gl{láá-y\`a a-x-tsáwi-t-e=a téca-t-a le}{there.\textsc{dist}-\textsc{ine} 3.\textsc{pl}-\textsc{a}-dwell-\textsc{fpst}-\textsc{pfv}=and happen-\textsc{fpst}-\textsc{pfv} then}
 \end{document}
